@@ -7,7 +7,7 @@
         public string Password { get; set; }
         public Guid RoleId { get; set; }
         public int Status { get; set; }
-        // Thể hiện mối quan hệ với bảng Role
+        // Thể hiện mối quan hệ với bảng Role, bill và cart
         public virtual Role UserRole { get; set; }
         public virtual List<Bill> Bills { get; set;}
         public virtual Cart Cart { get;set; }
