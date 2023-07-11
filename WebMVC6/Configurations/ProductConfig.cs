@@ -10,7 +10,7 @@ namespace WebMVC6.Configurations
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             // Thực hiện các thiết lập trên bảng
-            builder.HasKey(x =>  x.Id); // Khóa chính
+            builder.HasKey(x => x.Id); // Khóa chính
             // Thiết lập tên cột và kiểu dữ liệu
             builder.Property(x => x.Name).
                 HasColumnName("Ten").

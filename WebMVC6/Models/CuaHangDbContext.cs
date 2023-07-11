@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace WebMVC6.Models
 {
@@ -8,7 +9,12 @@ namespace WebMVC6.Models
         public CuaHangDbContext(DbContextOptions options):base(options) { }
         
         DbSet<Role> Roles { get; set; }
-
+        DbSet<Bill> Bills { get; set; }
+        DbSet<Cart> Carts { get; set; }
+        DbSet<Bill> Products { get; set; }
+        DbSet<CartDetails> CartDetailss { get; set; }
+        DbSet<BillDetails> BillDetails { get; set; }
+        DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=SHANGHAIK;Initial Catalog=NET104_18101;Integrated Security=True");
@@ -16,7 +22,7 @@ namespace WebMVC6.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
