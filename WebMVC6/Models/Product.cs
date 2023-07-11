@@ -11,5 +11,8 @@
         public int Status { get; set; }
         // public IFormFile Image { get; set; }
         public string ImageUrl { get; set; }
+        // Product và các bảng Details
+        public virtual ICollection<CartDetails> CartDetails { get; set; }
+        public virtual ICollection<BillDetails> BillDetails { get; set; }
     }
 }
