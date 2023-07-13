@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebMVC6.Models;
 
@@ -11,9 +12,10 @@ using WebMVC6.Models;
 namespace WebMVC6.Migrations
 {
     [DbContext(typeof(CuaHangDbContext))]
-    partial class CuaHangDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230713052848_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

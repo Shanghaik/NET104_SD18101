@@ -8,7 +8,7 @@ namespace WebMVC6.Configurations
     {
         public void Configure(EntityTypeBuilder<Cart> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(x => x.UserId);
         }
     }
 }

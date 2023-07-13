@@ -17,7 +17,7 @@ namespace WebMVC6.Models
         DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=SHANGHAIK;Initial Catalog=NET104_18101;Integrated Security=True");
+            optionsBuilder.UseSqlServer("Data Source=SHANGHAIK;Initial Catalog=NET104_18101_2;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

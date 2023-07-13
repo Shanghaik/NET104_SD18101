@@ -8,7 +8,9 @@ namespace WebMVC6.Configurations
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(x => x.Id);
+            builder.Property(p => p.RoleName).IsRequired().
+               HasColumnType("nvarchar(50)");
         }
     }
 }

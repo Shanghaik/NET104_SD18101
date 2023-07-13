@@ -8,7 +8,9 @@ namespace WebMVC6.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(x => x.Id);
+            builder.HasOne(p => p.UserRole).WithMany(q => q.Users).
+                HasForeignKey(p => p.RoleId);
         }
     }
 }

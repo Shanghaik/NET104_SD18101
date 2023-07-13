@@ -8,7 +8,10 @@ namespace WebMVC6.Configurations
     {
         public void Configure(EntityTypeBuilder<Bill> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(x=>x.Id);
+            builder.HasOne(p=>p.User).WithMany(q=>q.Bills).
+                HasForeignKey(x=>x.UserId).
+                HasConstraintName("FK_Bill_User");
         }
     }
 }
