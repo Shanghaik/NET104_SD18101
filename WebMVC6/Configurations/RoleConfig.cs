@@ -11,6 +11,9 @@ namespace WebMVC6.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(p => p.RoleName).IsRequired().
                HasColumnType("nvarchar(50)");
+            builder.HasOne<Role>().WithMany(p => p.Roles).
+                HasForeignKey(p => p.ReportId).OnDelete(DeleteBehavior.NoAction);
+
         }
     }
 }

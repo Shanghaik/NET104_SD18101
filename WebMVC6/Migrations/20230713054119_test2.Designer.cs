@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebMVC6.Models;
 
@@ -11,9 +12,10 @@ using WebMVC6.Models;
 namespace WebMVC6.Migrations
 {
     [DbContext(typeof(CuaHangDbContext))]
-    partial class CuaHangDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230713054119_test2")]
+    partial class test2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,9 +161,6 @@ namespace WebMVC6.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("ReportId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("RoleName")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
@@ -170,8 +169,6 @@ namespace WebMVC6.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReportId");
 
                     b.ToTable("Roles");
                 });
@@ -266,14 +263,6 @@ namespace WebMVC6.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WebMVC6.Models.Role", b =>
-                {
-                    b.HasOne("WebMVC6.Models.Role", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("ReportId")
-                        .OnDelete(DeleteBehavior.NoAction);
-                });
-
             modelBuilder.Entity("WebMVC6.Models.User", b =>
                 {
                     b.HasOne("WebMVC6.Models.Role", "UserRole")
@@ -304,8 +293,6 @@ namespace WebMVC6.Migrations
 
             modelBuilder.Entity("WebMVC6.Models.Role", b =>
                 {
-                    b.Navigation("Roles");
-
                     b.Navigation("Users");
                 });
 

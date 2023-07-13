@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebMVC6.Models;
 
@@ -11,9 +12,10 @@ using WebMVC6.Models;
 namespace WebMVC6.Migrations
 {
     [DbContext(typeof(CuaHangDbContext))]
-    partial class CuaHangDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230713062853_testTurtleBro")]
+    partial class testTurtleBro
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,7 +161,7 @@ namespace WebMVC6.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("ReportId")
+                    b.Property<Guid>("ReportId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("RoleName")
@@ -268,10 +270,13 @@ namespace WebMVC6.Migrations
 
             modelBuilder.Entity("WebMVC6.Models.Role", b =>
                 {
-                    b.HasOne("WebMVC6.Models.Role", null)
+                    b.HasOne("WebMVC6.Models.Role", "Rol")
                         .WithMany("Roles")
                         .HasForeignKey("ReportId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rol");
                 });
 
             modelBuilder.Entity("WebMVC6.Models.User", b =>
