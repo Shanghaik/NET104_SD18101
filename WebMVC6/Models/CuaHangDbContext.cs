@@ -8,13 +8,13 @@ namespace WebMVC6.Models
         public CuaHangDbContext() { }
         public CuaHangDbContext(DbContextOptions options):base(options) { }
         
-        DbSet<Role> Roles { get; set; }
-        DbSet<Bill> Bills { get; set; }
-        DbSet<Cart> Carts { get; set; }
-        DbSet<Bill> Products { get; set; }
-        DbSet<CartDetails> CartDetailss { get; set; }
-        DbSet<BillDetails> BillDetails { get; set; }
-        DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Bill> Bills { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<CartDetails> CartDetailss { get; set; }
+        public DbSet<BillDetails> BillDetails { get; set; }
+        public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=SHANGHAIK;Initial Catalog=NET104_18101_2;Integrated Security=True");
