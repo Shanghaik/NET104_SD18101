@@ -56,6 +56,18 @@ namespace WebMVC6.Controllers
             // Mỗi View chỉ có duy nhất 1 Model đại diện
         }
 
+        public IActionResult CreateProduct() {  // Tạo 1 action để mở view Create
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateProduct(Product p)
+        {  // Tạo 1 action để tạo Product mới
+            _services.AddProduct(p);
+            // Khi tạo xong trả về Action GetAll
+            return RedirectToAction("GetAllProduct");
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
