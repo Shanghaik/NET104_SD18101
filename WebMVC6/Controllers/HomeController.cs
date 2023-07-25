@@ -15,12 +15,22 @@ namespace WebMVC6.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(); // Trỏ đến View cùng tên với action
         }
 
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        // Tạo thử 1 Action
+        public IActionResult Test() // tạo thử
+        {
+            // return View();// trỏ tới view cùng tên
+            return View("Thu"); // trỏ tới view cụ thể
+        }
+        public IActionResult ChangeDirection() {
+            return RedirectToAction("Test");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
