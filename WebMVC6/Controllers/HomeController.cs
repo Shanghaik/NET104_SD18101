@@ -8,10 +8,10 @@ namespace WebMVC6.Controllers
     public class HomeController : Controller
     {
         // private readonly ILogger<HomeController> _logger;
-        private readonly ProductServices _services;
+        private readonly ProductServices _services = new ProductServices();
         public HomeController()
         {
-            _services= new ProductServices();
+            _services = new ProductServices();
         }
 
         public IActionResult Index()
@@ -30,7 +30,8 @@ namespace WebMVC6.Controllers
             // return View();// trỏ tới view cùng tên
             return View("Thu"); // trỏ tới view cụ thể
         }
-        public IActionResult ChangeDirection() {
+        public IActionResult ChangeDirection()
+        {
             return RedirectToAction("Test");
         }
 
@@ -41,14 +42,16 @@ namespace WebMVC6.Controllers
             // Thiết lập: Tên giữ nguyên, Chọn template là List
             // CHọn Model là Model mình muốn
             // Faked List
-            List<Product> products = new List<Product>()
-            {
-                new Product{ Name = "Thầy Việt", Id = Guid.NewGuid() },
-                new Product{ Name = "Thầy Khánh", Id = Guid.NewGuid() },
-                new Product{ Name = "Thầy Dũng", Id = Guid.NewGuid() },
-                new Product{ Name = "Thầy Tiến", Id = Guid.NewGuid() },
-                new Product{ Name = "Thầy Đan", Id = Guid.NewGuid() },
-            };
+            //List<Product> products = new List<Product>()
+            //{
+            //    new Product{ Name = "Thầy Việt", Id = Guid.NewGuid() },
+            //    new Product{ Name = "Thầy Khánh", Id = Guid.NewGuid() },
+            //    new Product{ Name = "Thầy Dũng", Id = Guid.NewGuid() },
+            //    new Product{ Name = "Thầy Tiến", Id = Guid.NewGuid() },
+            //    new Product{ Name = "Thầy Đan", Id = Guid.NewGuid() },
+            //};
+            var products = _services.GetAllProducts().ToList();
+
             return View(products); // Truyền thẳng Models vào View
             // Mỗi View chỉ có duy nhất 1 Model đại diện
         }
