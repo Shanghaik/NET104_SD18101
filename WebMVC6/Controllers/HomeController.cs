@@ -24,6 +24,33 @@ namespace WebMVC6.Controllers
             return View();
         }
 
+        public IActionResult Delete(Guid id)
+        {
+            _services.DeleteProduct(id);
+            // Xóa xong load lại trang
+            return RedirectToAction("GetAllProduct");
+        }
+        public IActionResult ProductDetails(Guid id)
+        {
+            var product = _services.GetProductById(id);
+            return View(product); // Truyền dữ liệu
+        }
+        // Tạo 1 action để mở form sửa/trong đó truyền vào đối
+        // tượng cẩn sửa (bao gồm các thuộc tính)
+        public IActionResult EditProduct(Guid id)
+        {
+            // Dựa vào id để lấy ra đối tượng cần sửa
+            var product = _services.GetProductById(id);
+            // Truyền vào View
+            return View(product);
+        }
+        public IActionResult ProductEdit(Product p)
+        {
+            // Dựa vào id để lấy ra đối tượng cần sửa
+            var product = _services.UpdateProduct(p);
+            // Truyền vào View
+            return RedirectToAction("GetAllProduct");
+        }
         // Tạo thử 1 Action
         public IActionResult Test() // tạo thử
         {
