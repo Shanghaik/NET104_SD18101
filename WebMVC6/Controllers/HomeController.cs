@@ -61,9 +61,19 @@ namespace WebMVC6.Controllers
         {
             return RedirectToAction("Test");
         }
-
+        /*
+         * ViewData dẫn xuất từ ViewDataDictionary, nó có thuộc tính của 
+         * dictionary như ContainsKey, Add, Remove và Clear. ViewBag thì nhận 
+         * từ DynamicViewData và nó cho phép tạo động các thuộc tính sử dụng 
+         * dấu chấm (@ViewBag. SomeKey = <giá trị>) và không cần chuyển kiểu.
+         */
         public IActionResult GetAllProduct()
         {
+            // ViewBag và ViewData có thể được dụng để truyền dữ liệu từ controller
+            // tới view và chỉ 1 View
+            ViewBag.ABY = "Xin chào các streamer học dốt";
+            ViewData["ABC"] = "Cin chào, trớ nà Streamer học rỏi";
+            // ViewData["ABC"] = 123;
             // Gen view tự đông 
             // Chuột phải: Chọn add View => Razor View
             // Thiết lập: Tên giữ nguyên, Chọn template là List
