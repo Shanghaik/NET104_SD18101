@@ -83,15 +83,24 @@ namespace WebMVC6.Controllers
             // Mỗi View chỉ có duy nhất 1 Model đại diện
         }
 
-        public IActionResult CreateProduct() {  // Tạo 1 action để mở view Create
+        public IActionResult CreateProduct()
+        {  // Tạo 1 action để mở view Create
             return View();
         }
         [HttpPost]
-        public IActionResult CreateProduct(Product p)
-        {  // Tạo 1 action để tạo Product mới
-            _services.AddProduct(p);
-            // Khi tạo xong trả về Action GetAll
-            return RedirectToAction("GetAllProduct");
+        public IActionResult CreateProduct(Product p, IFormFile imageFile)
+        {
+            // Thực hiện trỏ tới thu mục Root để copy file từ ngoài vào
+            var path = Path.Combine(Directory.GetCurrentDirectory(),
+                "wwwroot", "img", imageFile.FileName);
+            // Kết quả thu được sẽ có dạng ~wwwroot/img/filename
+            var stream = new FileStream(path, FileMode.Create); // Mode = Create vì ta copy
+            imageFile.CopyTo(stream); // Copy ảnh vào stream có path là path mình vừa truyền
+            // Gán lại thuộc tính imageURL = đường dẫn vào file trong root
+            p.ImageUrl= imageFile.FileName;
+            if (_services.AddProduct(p))
+                return RedirectToAction("GetAllProduct");
+            else return Content("Thêm thất bại");
         }
 
 

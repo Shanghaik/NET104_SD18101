@@ -2,6 +2,10 @@
 
 @{
     ViewData["Title"] = "GetAllProduct";
+    List<string> imageExtension = new List<string>()
+    {
+        ".jpg",".png",".webp",".tiff",".gif",".jpeg",".svg"
+    };
 }
 
 <h1>GetAllProduct</h1>
@@ -65,7 +69,20 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ImageUrl)
+                    @* @ là khi mình nhúng code vào *@
+                    @{
+                        // Lấy đuôi của ảnh để check xem có phải ảnh hay ko?
+                        var extension = System.IO.Path.GetExtension(item.ImageUrl);
+                    }
+                    @if (imageExtension.Contains(extension)) // Check đuôi ảnh
+                    {
+                        <img src="~/img/@item.ImageUrl" height="100px">
+                        // Gán ảnh
+                    }
+                    else // Nếu không đúng ta set 1 ảnh mặc định
+                    {
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4v_dkWPQi1loWthMLDpIYa587pwZ6KWz9SdQ6FakvnSLrYK03I7MyqWimrkVntTXNxE0&usqp=CAU" height="100px">
+                    }
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "EditProduct", new {  id = item.Id}) |
